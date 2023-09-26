@@ -11,13 +11,16 @@
     <link rel="stylesheet" href="../web_semestralka/style.css">
     
     <meta charset="UTF-8">
-    <meta name="Prihlasovaci formular" content="width=device-width, initial-scale=1.0">
-    <title>Přihlašovací formulář</title>
+    <meta name="Hlavni strana" content="width=device-width, initial-scale=1.0">
+    <title>Hlavní strana</title>
 </head>
 <body>
   <!--Navigation-->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="../web_semestralka/main_page.html">Konference</a>
+    <a id="icon" class="navbar-brand" href="../web_semestralka/main_page.html">
+      <i class="fa fa-comments"></i>
+      Konference
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -25,6 +28,9 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <a class="nav-link" href="../web_semestralka/main_page.html">Domů</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Články</a>
         </li>
       </ul>
       <span class="navbar-text">
@@ -37,15 +43,45 @@
   <!--Navigation-->
 
   <section>
-    <div class="about" align="center">
-        <h1 id="main_title">O konferenci</h1>
+    <div class="basic_info">
+      <div class="about" align="center">
+          <h1 id="main_title">O konferenci</h1>
 
-        <p id="main_about">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. 
-            Maecenas lorem. Quisque tincidunt scelerisque libero. 
-            Nunc tincidunt ante vitae massa. Fusce suscipit libero eget elit. 
-            Vestibulum fermentum tortor id mi. 
-        </p>
+          <p id="main_about">
+              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. 
+              Maecenas lorem. Quisque tincidunt scelerisque libero. 
+              Nunc tincidunt ante vitae massa. Fusce suscipit libero eget elit. 
+              Vestibulum fermentum tortor id mi. 
+          </p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="left_container">
+          <img src="../web_semestralka/pictures/pen.jpeg" width="100%" height="100%">
+      </div>
+
+      <div class="right_container">
+          <div class="right_container_text">
+            <h1>
+              Jak psát?
+            </h1>
+            
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+              Assumenda debitis eveniet nisi! Ipsum molestias dolorum 
+              recusandae eos laboriosam exercitationem praesentium odit 
+              deserunt culpa facilis accusamus ab nulla qui deleniti vel 
+              dolorem, aspernatur quaerat doloribus enim consequatur cum 
+              voluptate accusantium nesciunt! Rerum, provident laboriosam! 
+              Molestiae consectetur ut, necessitatibus cumque numquam quisquam?
+            </p>
+          </div>
+      </div>
+    </div>
+
+    <div class="articles">
+      <h1 id="acrticles_title">Články</h1>
     </div>
   </section>
 

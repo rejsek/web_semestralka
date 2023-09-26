@@ -2,31 +2,80 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+#icon:hover {
+    color: rgb(36, 189, 71);
+    transition: 0.5s;
+}
+
 #login_icon {
     font-size: 20px;
 }
 
 #login_icon:hover {
     color: rgb(36, 189, 71);
-    transition: 0.2s;
+    transition: 0.5s;
+}
+
+nav {
+    height: 10%;
+}
+
+.form_div {
+    padding-bottom: 6.5rem;
 }
 
 form {
-    margin-top: 10%;
+    margin-top: 7%;
     width: 30%;
+    height: 80%;
 }
 
 h1 {
     margin-bottom: 10%;
 }
 
+.basic_info {
+    border-bottom: 2px solid gainsboro;
+}
+
 #main_title {
-    margin-top: 5%;
+    margin-top: 4%;
     margin-bottom: 2%;
 }
 
 #main_about {
     width: 30%;
+    margin-bottom: 4%;
+}
+
+.container {
+    padding-top: 5%;
+    padding-bottom: 5%;
+    border-bottom: 2px solid gainsboro;
+}
+
+img {
+    border-radius: 10px;
+}
+
+.left_container {
+    width: 80%;
+}
+
+.right_container {
+    text-align: center;
+    width: 80%;
+    margin-left: 5%;
+}
+
+.right_container_text {
+    padding-left: 10%;
+}
+
+.articles {
+    text-align: center;
+    padding-top: 5%;
+    padding-bottom: 5%;
 }
 
 input {
@@ -41,7 +90,7 @@ button {
 
 button:hover{
     width: 55%;
-    transition: 0.2s;
+    transition: 0.5s;
 }
 
 a {
@@ -50,12 +99,16 @@ a {
 
 a:hover {
     color: rgb(36, 189, 71);
-    transition: 0.2s;
+    transition: 0.5s;
     text-decoration: none;
 }
 
+.container {
+    display: flex;
+}
+
 footer {
+    height: 10%;
     width: 100%;
-    position: fixed;
     bottom: 0;
 }
