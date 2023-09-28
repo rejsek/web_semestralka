@@ -35,6 +35,9 @@ h1 {
 }
 
 .basic_info {
+    background-image: url(../web_semestralka/pictures/articles.jpg);
+    background-size: 100%;
+    height: 94vh;
     border-bottom: 2px solid gainsboro;
 }
 
