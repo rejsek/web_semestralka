@@ -79,6 +79,24 @@ img {
     padding-bottom: 5%;
 }
 
+.grid_div {
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    column-gap: 50px;
+    row-gap: 50px;
+}
+
+.grid_item {
+    border: 2px solid gainsboro;
+}
+
+.grid_item p {
+    margin-top: 20%;
+}
+
 input {
     margin-bottom: 30px;
 }
