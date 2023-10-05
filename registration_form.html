@@ -26,7 +26,7 @@
               <i class="fa fa-user-circle" style="font-size: 20px;"></i>
             </div>
           </div>
-          <input type="text" class="form-control form-control-lg" id="inlineFormInputGroup" placeholder="Uživatelské jméno">
+          <input type="text" class="form-control form-control-lg" id="inlineFormInputGroup" placeholder="Uživatelské jméno" autofocus tabindex="1">
         </div>
       </div>
 
@@ -37,7 +37,7 @@
               <i class="fa fa-envelope" style="font-size: 20px;"></i>
             </div>
           </div>
-          <input type="email" class="form-control form-control-lg" id="inlineFormInputGroup" placeholder="Email">
+          <input type="email" class="form-control form-control-lg" id="inlineFormInputGroup" placeholder="Email" tabindex="2">
         </div>
       </div>
       
@@ -48,11 +48,13 @@
               <i class="fa fa-lock" style="font-size:30px"></i>
             </div>
           </div>
-          <input type="password" class="form-control form-control-lg" id="inlineFormInputGroup" placeholder="Heslo">
+          <input type="password" class="form-control form-control-lg" id="inlineFormInputGroup" placeholder="Heslo" tabindex="3">
         </div>
       </div>
       
-      <button type="submit" class="btn btn-success btn-lg">Potvrdit</button>
+      <div class="submit_button">
+        <button type="submit" class="btn btn-success btn-lg" tabindex="4">Potvrdit</button>
+      </div>
     </form>
   </div>
 </body>

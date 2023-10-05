@@ -20,6 +20,16 @@ nav {
     height: 10%;
 }
 
+nav a {
+    color: rgb(40, 167, 69);
+    transition: color 0.5s;
+}
+
+nav a:hover {
+    color: rgb(36, 189, 71);
+    text-decoration: none;
+}
+
 .form_div {
     padding-bottom: 6.5rem;
 }
@@ -30,7 +40,7 @@ form {
     height: 80%;
 }
 
-h1 {
+.form_div h1 {
     margin-bottom: 10%;
 }
 
@@ -50,6 +60,7 @@ h1 {
 }
 
 .container {
+    display: flex;
     padding-top: 5%;
     padding-bottom: 5%;
     border-bottom: 2px solid gainsboro;
@@ -67,6 +78,7 @@ img {
     text-align: center;
     width: 80%;
     margin-left: 5%;
+    padding-top: 5%;
 }
 
 .right_container_text {
@@ -84,49 +96,74 @@ img {
     margin-right: 5%;
     text-align: center;
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 30% 30% 30%;
     column-gap: 50px;
     row-gap: 50px;
 }
 
+.grid_div a {
+    text-decoration: none;
+}
+
 .grid_item {
+    color: black;
     border: 2px solid gainsboro;
+    transition: opacity 0.5s;
+}
+
+.grid_item:hover {
+    opacity: 0.5;
+}
+
+.grid_item h2 {
+    background-color: gainsboro;
+    padding-top: 10%;
+    padding-bottom: 10%;
 }
 
 .grid_item p {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+#content_of_article {
+    margin-top: 5%;
+    text-align: justify;
+}
+
+#autor_of_article {
+    padding-left: 55%;
+}
+
+.rating_of_article {
+    padding-left: 5%;
+}
+
+.checked {
+    color: rgb(36, 189, 71);
+}
+
+.footer_of_article {
     margin-top: 20%;
+    display: flex;
 }
 
 input {
     margin-bottom: 30px;
 }
 
-button {
+.submit_button button {
     width: 50%;
     margin-top: 10%;
-    margin-bottom: 10%;
+    transition: width 0.3s;
 }
 
-button:hover{
+.submit_button button:hover{
     width: 55%;
-    transition: 0.5s;
-}
-
-a {
-    color: rgb(40,167,69);
-}
-
-a:hover {
-    color: rgb(36, 189, 71);
-    transition: 0.5s;
-    text-decoration: none;
-}
-
-.container {
-    display: flex;
 }
 
 footer {
+    margin-top: 5%;
     height: 10%;
     width: 100%;
     bottom: 0;
