@@ -2,6 +2,8 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/*-------------------------------------Navigace-------------------------------------*/
+
 #icon:hover {
     color: rgb(36, 189, 71);
     transition: 0.5s;
@@ -30,6 +32,10 @@ nav a:hover {
     text-decoration: none;
 }
 
+/*-------------------------------------Navigace-------------------------------------*/
+
+/*-------------------------------------Formular-------------------------------------*/
+
 .form_div {
     padding-bottom: 6.5rem;
 }
@@ -43,6 +49,24 @@ form {
 .form_div h1 {
     margin-bottom: 10%;
 }
+
+input {
+    margin-bottom: 30px;
+}
+
+.submit_button button {
+    width: 50%;
+    margin-top: 10%;
+    transition: width 0.3s;
+}
+
+.submit_button button:hover{
+    width: 55%;
+}
+
+/*-------------------------------------Formular-------------------------------------*/
+
+/*-------------------------------------Hlavni strana-------------------------------------*/
 
 .about {
     background-image: url(../web_semestralka/pictures/articles.jpg);
@@ -132,7 +156,8 @@ img {
 }
 
 #autor_of_article {
-    padding-left: 55%;
+    padding-left: 20rem;
+    padding-right: 0;
 }
 
 .rating_of_article {
@@ -148,19 +173,50 @@ img {
     display: flex;
 }
 
-input {
-    margin-bottom: 30px;
+/*-------------------------------------Hlavni strana-------------------------------------*/
+
+/*-------------------------------------Detail clanku-------------------------------------*/
+
+.detail_of_article {
+    text-align: center;
+    margin-top: 5%;
+    margin-left: 20%;
+    margin-right: 20%;
 }
 
-.submit_button button {
-    width: 50%;
-    margin-top: 10%;
-    transition: width 0.3s;
+.detail_of_article h1 {
+    font-size: 60px;
 }
 
-.submit_button button:hover{
-    width: 55%;
+.detail_of_article h2 {
+    font-size: 20px;
+    text-align: left;
+    border-bottom: 2px solid rgb(36, 189, 71);
 }
+
+.detail_of_article h2::before {
+    content: "od: ";
+}
+
+#detail_text {
+    margin-top: 3%;
+    font-size: 18px;
+    text-align: justify;    
+}
+
+.detail_rating {
+    margin-top: 3%;
+    text-align: right;
+    border-top: 2px solid rgb(36, 189, 71);
+}
+
+.detail_rating::before {
+    content: "Hodnocení: ";
+} 
+
+/*-------------------------------------Detail clanku-------------------------------------*/
+
+/*-------------------------------------Paticka-------------------------------------*/
 
 footer {
     margin-top: 5%;
@@ -168,3 +224,5 @@ footer {
     width: 100%;
     bottom: 0;
 }
+
+/*-------------------------------------Paticka-------------------------------------*/

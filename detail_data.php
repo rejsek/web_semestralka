@@ -1,5 +1,5 @@
 <?php
-    echo '<div class="grid_div">';
+    $articleId = $_GET['id'];   //id rozkliknuteho clanku
 
     $servername = "localhost";
     $username = "root";
@@ -12,38 +12,28 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT * FROM clanky";
+    $sql = "SELECT * FROM clanky WHERE id_clanku=" . $articleId;
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-            echo '<a href="detail.php?id=' . $row["id_clanku"] . '">';
-            echo '<div class=grid_item>';
-            echo '<h2>' . $row["titulek"] . '</h2>';
-            echo '<p id="content_of_article">' . substr($row["text"], 0, 200) . '...</p>';
-            
-            echo '<div class="footer_of_article">';
-            
-            echo '<div class="rating_of_article">';
+            echo '<div class="detail_of_article">';
 
-            show_starts(intval($row["hodnoceni"]));
+            echo '<h1>' . $row["titulek"] . '</h1>';
+            echo '<h2>' . $row["autor"] . '</h2>';
+            echo '<p id="detail_text">' . $row["text"] . '</p>';
             
-            echo '</div>';
-
-            echo '<p id="autor_of_article">' . '<i class="fa fa-user"></i> : ' . $row["autor"] . '</p>';
-
+            echo '<div class="detail_rating">';
+            echo show_starts(intval($row["hodnoceni"]));
             echo '</div>';
 
             echo '</div>';
-            echo '</a>';
         }
     } else {
         echo "0 results";
     }
 
     $conn->close();
-
-    echo '</div>';
 
     function show_starts($rating) {
         /**
