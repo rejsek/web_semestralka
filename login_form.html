@@ -16,7 +16,7 @@
 </head>
 <body>
   <div class="form_div" align="center">
-    <form>
+    <form action="data_form.php" method="POST" accept-charset="UTF-8">
       <h1>Přihlášení</h1>
 
       <div class="col-auto">
@@ -26,7 +26,7 @@
               <i class="fa fa-user-circle" style="font-size: 20px;"></i>
             </div>
           </div>
-          <input type="text" class="form-control form-control-lg" id="inlineFormInputGroup" placeholder="Uživatelské jméno" autofocus tabindex="1">
+          <input type="text" name="nick" class="form-control form-control-lg" id="inlineFormInputGroup" placeholder="Uživatelské jméno" autofocus tabindex="1" required>
         </div>
       </div>
       
@@ -37,7 +37,7 @@
               <i class="fa fa-lock" style="font-size:30px"></i>
             </div>
           </div>
-          <input type="password" class="form-control form-control-lg" id="inlineFormInputGroup" placeholder="Heslo" tabindex="2">
+          <input type="password" name="passwd" class="form-control form-control-lg" id="inlineFormInputGroup" placeholder="Heslo" tabindex="2" required>
         </div>
       </div>
 
@@ -47,7 +47,7 @@
       </p>
       
       <div class="submit_button">
-        <button type="submit" class="btn btn-success btn-lg" tabindex="3">Přihlásit se</button>
+        <button type="submit" value="send" class="btn btn-success btn-lg" tabindex="3">Přihlásit se</button>
       </div>
 
     </form>
