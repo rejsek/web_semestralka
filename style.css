@@ -135,6 +135,7 @@ img {
     grid-template-columns: 30% 30% 30%;
     column-gap: 50px;
     row-gap: 50px;
+    cursor: pointer;
 }
 
 .grid_div a {

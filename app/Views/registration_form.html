@@ -1,0 +1,47 @@
+<div class="form_div" align="center">
+    <form action="data_form.php" method="POST" accept-charset="UTF-8">
+      <h1>Vytvořit účet</h1>
+
+      <div class="col-auto">
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <i class="fa fa-user-circle" style="font-size: 20px;"></i>
+            </div>
+          </div>
+          <input type="text" name="nick" class="form-control form-control-lg" id="inlineFormInputGroup" placeholder="Uživatelské jméno" autofocus tabindex="1" required>
+        </div>
+      </div>
+
+      <div class="col-auto">
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <i class="fa fa-envelope" style="font-size: 20px;"></i>
+            </div>
+          </div>
+          <input type="email" name="email" pattern="[^@\s]+@[^@\s]+\.[a-zA-Z]{2,4}" class="form-control form-control-lg" id="inlineFormInputGroup" placeholder="Email" tabindex="2" required>
+        </div>
+      </div>
+      
+      <div class="col-auto">
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <i class="fa fa-lock" style="font-size:30px"></i>
+            </div>
+          </div>
+          <input type="password" name="passwd" class="form-control form-control-lg" id="inlineFormInputGroup" placeholder="Heslo" tabindex="3" required>
+        </div>
+      </div>
+
+      <p>
+        Už máte účet?
+        <a href="index.php?page=prihlasovaci_formular">Přihlásit se</a>
+      </p>
+      
+      <div class="submit_button">
+        <button type="submit" value="send" class="btn btn-success btn-lg" tabindex="4">Potvrdit</button>
+      </div>
+    </form>
+  </div>

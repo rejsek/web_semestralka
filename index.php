@@ -1,7 +1,14 @@
 <?php
-    include("header.html");
-    include("main_page.html");
-    include("data_from_database.php");
-    show_articles();
-    include("footer.html");
+    //////////////////////////////////////////////////////////////////
+    ///////////////////// Hlavni soubor aplikace /////////////////////
+    //////////////////////////////////////////////////////////////////
+
+    // Nacteni nastavovaciho souboru //
+    require_once("settings.inc.php");
+
+    // Nacteni tridy spoustejici aplikaci //
+    require_once("app/ApplicationStart.class.php");
+
+    $app = new ApplicationStart();
+    $app->appStart();
 ?>
