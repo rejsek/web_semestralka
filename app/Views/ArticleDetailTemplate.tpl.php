@@ -6,9 +6,11 @@
 ?>
 
 <?php
-    
+
     // Hlavnicka stranky //
     $templates->getHeader($tplData['title']);
+    
+    // Obsah stranky //
     $res = "";
 
     if(array_key_exists("detail", $tplData)) {
@@ -17,8 +19,13 @@
 
             $res .= '<h1>' . $data["titulek"] . '</h1>';
             $res .= '<h2>' . $data["autor"] . '</h2>';
+
+            if (!empty($data["obrazek"])) {
+                $res .= '<img src="data:image/jpeg;base64,' . base64_encode($data["obrazek"]) . '">'; // Zde přidáme obrázek, pokud existuje
+            }
+
             $res .= '<p id="detail_text">' . $data["text"] . '</p>';
-            
+        
             $res .= '<div class="detail_rating">';
             $res .= $templates->show_starts(intval($data["hodnoceni"]));
             $res .= '</div>';

@@ -30,6 +30,11 @@
      */
     define("TABLE_ARICLES", "clanky");
 
+    /**
+     * Tabulka s autory
+     */
+    define("TABLE_USERS", "autori");
+
     // Pripojeni k databazi //
 
     

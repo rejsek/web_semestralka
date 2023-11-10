@@ -32,6 +32,19 @@
             $tplData = [];
             // nazev
             $tplData['title'] = $pageTitle;
+            
+            // Bylo sticknuto tlacitko pro registraci ?
+            if(isset($_POST['action']) and $_POST['action'] == "send") {
+                $result = $this->db->addUser($_POST["nick"], $_POST["email"], $_POST["passwd"]);
+
+                if($result) {
+                    echo "<div class='alert alert-success alert-dismissible' role='alert'>
+                    <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                    Registrace probělhla v pořádku</div>";
+                } else {
+                    echo "<div class='alert alert-danger' role='alert'>Registrace neproběhla v pořádku</div>";
+                }
+            }
 
             ob_start();
             

@@ -34,5 +34,16 @@
 
             return $this->pdo->query($sql)->fetchAll();
         }
+
+        /**
+         * Prida uzivatele do databaze
+         */
+        public function addUser(string $username, string $email, string $password):bool {
+            $hashPassword = password_hash($password, PASSWORD_BCRYPT);
+            $sql = "INSERT INTO " . TABLE_USERS . " (uz_jmeno, email, heslo) VALUES ('" . $username . "', '" . $email . "', '" . $hashPassword . "')";
+            
+            $result = $this->pdo->exec($sql);
+            return $result;
+        }
     }
 ?>
