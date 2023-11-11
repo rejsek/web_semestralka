@@ -35,14 +35,21 @@
             
             // Bylo sticknuto tlacitko pro registraci ?
             if(isset($_POST['action']) and $_POST['action'] == "send") {
-                $result = $this->db->addUser($_POST["nick"], $_POST["email"], $_POST["passwd"]);
+                $exists = $this->db->searchForUser($_POST["nick"]);
 
-                if($result) {
-                    echo "<div class='alert alert-success alert-dismissible' role='alert'>
+                if($exists) {
+                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
                     <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-                    Registrace probělhla v pořádku</div>";
+                    Uživatelské jméno již exituje</div>";
+                
                 } else {
-                    echo "<div class='alert alert-danger' role='alert'>Registrace neproběhla v pořádku</div>";
+                    $result = $this->db->addUser($_POST["nick"], $_POST["email"], $_POST["passwd"]);
+
+                    if($result) {
+                        echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                        <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                        Registrace probělhla v pořádku</div>";
+                    }
                 }
             }
 

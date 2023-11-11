@@ -5,7 +5,7 @@
     class DatabaseModel {
 
         /**
-         * Odjekt pracujici s databazi prostrednictvim PDO
+         * Objekt pracujici s databazi prostrednictvim PDO
          */
         private $pdo;
 
@@ -44,6 +44,25 @@
             
             $result = $this->pdo->exec($sql);
             return $result;
+        }
+
+        /**
+         * Zjisti, zda se uzivatel vyskytuje v databazi
+         */
+        public function searchForUser(string $username):bool {
+            $sql = "SELECT COUNT(*) FROM ". TABLE_USERS ." WHERE uz_jmeno=:username";
+
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+            $stmt->execute();
+
+            $result = intval($stmt->fetchColumn());
+
+            if($result == 0) {
+                return false;
+            } else {
+                return true;
+            }
         }
     }
 ?>
