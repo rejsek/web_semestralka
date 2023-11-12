@@ -36,6 +36,15 @@
         }
 
         /**
+         * Vrati detailni informace o profilu
+         */
+        public function getProfileByName(string $username):array {
+            $sql = "SELECT * FROM " . TABLE_USERS . " WHERE uz_jmeno='" . $username . "'";
+
+            return $this->pdo->query($sql)->fetchAll();
+        }
+
+        /**
          * Prida uzivatele do databaze
          */
         public function addUser(string $username, string $email, string $password):bool {
@@ -47,7 +56,7 @@
         }
 
         /**
-         * Zjisti, zda se uzivatel vyskytuje v databazi
+         * Zjisti, zda se uzivatel vyskytuje v databazi - podle uz_jmena
          */
         public function searchForUser(string $username):bool {
             $sql = "SELECT COUNT(*) FROM ". TABLE_USERS ." WHERE uz_jmeno=:username";
@@ -62,6 +71,32 @@
                 return false;
             } else {
                 return true;
+            }
+        }
+
+        /**
+         * Zjisti, zda se uzivatel vyskutuje v databazi - podle uz_jmena a hesla
+         */
+        public function loginUser(string $username, string $password):bool {
+            $sql = "SELECT * FROM " . TABLE_USERS . " WHERE uz_jmeno = :username";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindParam(':username', $username);
+
+            $stmt->execute();
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+            // Pokud uživatel neexistuje, vrátím false
+            if (!$user) {
+                return false;
+            }
+
+            // Ověříme zadané heslo s uloženým hashem hesla
+            if (password_verify($password, $user['heslo'])) {
+                // Hesla se shodují, vrátím true
+                return true;
+            } else {
+                // Hesla se neshodují, vrátím false
+                return false;
             }
         }
     }

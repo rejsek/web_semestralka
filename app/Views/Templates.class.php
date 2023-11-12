@@ -1,5 +1,4 @@
 <?php
-    
     /**
      * Trida vypisujici HTML hlavicku a paticku stanky
      */
@@ -47,8 +46,20 @@
                         </li>
                     </ul>
                     <span class="navbar-text">
-                        <a id="login_icon" href="index.php?page=prihlasovaci_formular">
-                        <i class="fa fa-user-circle"></i>
+
+                        <!--Vypis prihlaseneho uzivatele-->
+                        <?php
+                            if(!empty($_SESSION['login_user'])) {
+                                echo "<a id='login_icon' href='index.php?page=detail_profilu&name=" . $_SESSION["login_user"] ."'>";
+                                
+                                echo "<i class='fa fa-user-circle'></i> " . 
+                                      $_SESSION['login_user'];
+                            } else {
+                                echo "<a id='login_icon' href='index.php?page=prihlasovaci_formular'>
+                                      <i class='fa fa-user-circle'></i>";
+                            }
+                        ?>
+
                         </a>
                     </span>
                     </div>

@@ -19,6 +19,10 @@
             // Inicializace prace s DB
             require_once(DIRECTORY_MODELS . "/DatabaseModel.class.php");
             $this->db = new DatabaseModel();
+
+            // Inicializace prace se Session
+            require_once(DIRECTORY_CONTROLLERS . "/SessionManager.class.php");
+            $this->session = new SessionManager();
         }
 
         /**

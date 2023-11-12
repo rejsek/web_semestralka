@@ -105,6 +105,16 @@
             "class_name" => "ArticleDetail",
         ),
         //// KONEC: Detail zvoleneho clanku ////
+
+        //// Detail profilu ////
+        "detail_profilu" => array(
+            "title"=> "Detail profilu",
+
+            //// kontroler
+            "file_name" => "ProfileDetailController.class.php",
+            "class_name" => "ProfileDetail",
+        ),
+        //// KONEC: Detail profilu ////
     );
 
     // Stranky webu //

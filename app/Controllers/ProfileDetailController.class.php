@@ -4,12 +4,17 @@
     /**
      * Ovladac zajistujici vypsani uvodni stranky
      */
-    class MainPage implements IController {
+    class ProfileDetail implements IController {
         
         /**
          * @var DatabaseModel $db       Sprava databaze
          */
         private $db;
+
+        /**
+         * @var SessionManager $session     Prace se Session
+         */
+        private $session;
 
         /**
          * Inicializace pripojeni k databazi
@@ -33,17 +38,24 @@
         public function show(string $pageTitle):string {
             //// vsechna data sablony budou globalni
             global $tplData;
+            $profileName = $_GET['name'];   //id rozkliknuteho profilu
+
             $tplData = [];
             // nazev
             $tplData['title'] = $pageTitle;
-            // data clanky
-            $tplData['articles'] = $this->db->getAllArticles();
+            // data profilu
+            $tplData['profile_detail'] = $this->db->getProfileByName($profileName);
 
             //// vypsani prislusne sablony
             // zapnu output buffer pro odchyceni vypisu sablony
+
+            if(isset($_POST['action']) and $_POST['action'] == "logout") {
+                $this->session->logoutUser();
+            }
+
             ob_start();
             // pripojim sablonu, cimz ji i vykonam
-            require(DIRECTORY_VIEWS ."/MainPageTemplate.tpl.php");
+            require(DIRECTORY_VIEWS ."/ProfileDetailTemplate.tpl.php");
             // ziskam obsah output bufferu, tj. vypsanou sablonu
             $content = ob_get_clean();
 

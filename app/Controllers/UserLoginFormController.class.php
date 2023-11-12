@@ -12,6 +12,11 @@
         private $db;
 
         /**
+         * @var SessionManager $session     Prace se Session
+         */
+        private $session;
+
+        /**
          * Inicializace pripojeni k databazi
          */
         public function __construct() {
@@ -19,6 +24,10 @@
             // Inicializace prace s DB
             require_once(DIRECTORY_MODELS . "/DatabaseModel.class.php");
             $this->db = new DatabaseModel();
+
+            // Inicializace prace se Session
+            require_once(DIRECTORY_CONTROLLERS . "/SessionManager.class.php");
+            $this->session = new SessionManager();
         }
 
         /**
@@ -32,6 +41,10 @@
             $tplData = [];
             // nazev
             $tplData['title'] = $pageTitle;
+
+            if(isset($_POST['action']) and $_POST['action'] == "send") {
+                $this->session->loginUser($_POST["nick"], $_POST["passwd"]);
+            }
 
             ob_start();
             

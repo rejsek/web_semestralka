@@ -12,6 +12,11 @@
         private $db;
 
         /**
+         * @var SessionManager $session     Prace se Session
+         */
+        private $session;
+
+        /**
          * Inicializace pripojeni k databazi
          */
         public function __construct() {
@@ -19,6 +24,10 @@
             // Inicializace prace s DB
             require_once(DIRECTORY_MODELS . "/DatabaseModel.class.php");
             $this->db = new DatabaseModel();
+
+            // Inicializace prace se Session
+            require_once(DIRECTORY_CONTROLLERS . "/SessionManager.class.php");
+            $this->session = new SessionManager();
         }
 
         /**
@@ -33,24 +42,8 @@
             // nazev
             $tplData['title'] = $pageTitle;
             
-            // Bylo sticknuto tlacitko pro registraci ?
             if(isset($_POST['action']) and $_POST['action'] == "send") {
-                $exists = $this->db->searchForUser($_POST["nick"]);
-
-                if($exists) {
-                    echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                    <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-                    Uživatelské jméno již exituje</div>";
-                
-                } else {
-                    $result = $this->db->addUser($_POST["nick"], $_POST["email"], $_POST["passwd"]);
-
-                    if($result) {
-                        echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                        <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-                        Registrace probělhla v pořádku</div>";
-                    }
-                }
+                $this->session->addUser($_POST["nick"], $_POST["email"], $_POST["passwd"]);
             }
 
             ob_start();
