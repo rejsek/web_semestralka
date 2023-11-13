@@ -38,6 +38,13 @@
         }
 
         /**
+         * Pridani clanku do databaze
+         */
+        public function addArticle(string $title, string $text) {
+            $this->db->addArticle($title, $text, $_SESSION['login_user']);
+        }
+
+        /**
          * Prida uzivatele do databaze a nasledne ho prihlasi
          */
         public function addUser(string $username, string $email, string $password) {

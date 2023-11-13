@@ -44,19 +44,32 @@
                         <li class="nav-item">
                         <a class="nav-link" href="#">Články</a>
                         </li>
+
+                        <?php
+                            if(!empty($_SESSION['login_user'])) {
+                                $res = "<li class='nav-item'>";
+                                $res .= "<a class='nav-link' href='index.php?page=pridat_clanek'>Přidat článek</a>";
+                                $res .= "</li>";
+
+                                echo $res;
+                            }
+                        ?>
+
                     </ul>
                     <span class="navbar-text">
 
                         <!--Vypis prihlaseneho uzivatele-->
                         <?php
                             if(!empty($_SESSION['login_user'])) {
-                                echo "<a id='login_icon' href='index.php?page=detail_profilu&name=" . $_SESSION["login_user"] ."'>";
+                                $res = "<a id='login_icon' href='index.php?page=detail_profilu&name=" . $_SESSION["login_user"] ."'>";
+                                $res .= "<i class='fa fa-address-book'></i> " . $_SESSION['login_user'];
                                 
-                                echo "<i class='fa fa-user-circle'></i> " . 
-                                      $_SESSION['login_user'];
+                                echo $res;
                             } else {
-                                echo "<a id='login_icon' href='index.php?page=prihlasovaci_formular'>
-                                      <i class='fa fa-user-circle'></i>";
+                                $res = "<a id='login_icon' href='index.php?page=prihlasovaci_formular'>";
+                                $res .= "<i class='fa fa-user-circle'></i>";
+
+                                echo $res;
                             }
                         ?>
 

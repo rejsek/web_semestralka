@@ -99,5 +99,17 @@
                 return false;
             }
         }
+
+        /**
+         * Prida clanek do databaze
+         */
+        public function addArticle(string $title, string $text, string $username):bool {
+            $rating = 0;
+
+            $sql = "INSERT INTO ". TABLE_ARICLES . " (titulek, text, autor, hodnoceni) VALUES ('" . $title . "', '" . $text . "', '" . $username . "', '" . $rating . "')";
+            
+            $result = $this->pdo->exec($sql);
+            return $result;
+        }
     }
 ?>

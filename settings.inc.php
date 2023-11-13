@@ -115,6 +115,16 @@
             "class_name" => "ProfileDetail",
         ),
         //// KONEC: Detail profilu ////
+
+        //// Formular na pridani clanku ////
+        "pridat_clanek" => array(
+            "title"=> "Přidání článku",
+
+            //// kontroler
+            "file_name" => "AddArticleController.class.php",
+            "class_name" => "AddArticle",
+        ),
+        //// KONEC: Formular na pridani clanku ////
     );
 
     // Stranky webu //
