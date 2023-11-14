@@ -11,7 +11,9 @@
     $templates->getHeader($tplData['title']);
     
     // Obsah stranky //
-    $res = "";
+    $res = "<div class='detail_profile'>";
+
+    $res .= "<i class='fa fa-user-circle'></i>";
 
     if(array_key_exists("profile_detail", $tplData)) {
         foreach($tplData["profile_detail"] as $data) {
@@ -19,6 +21,8 @@
         }
     }
     
+    $res .= "</div>";
+
     echo $res;
 
     require_once(DIRECTORY_VIEWS . "/profile_detail.html");

@@ -27,6 +27,7 @@
             if ($isLogged) {
                 $_SESSION['logged_in']  = true;
                 $_SESSION['login_user'] =  $username;
+                $_SESSION['login_role'] =  $this->db->getRole($username);
 
                 header("Location: index.php?page=uvod");
 
@@ -56,11 +57,12 @@
                 Uživatelské jméno již exituje</div>";
             
             } else {
-                $result = $this->db->addUser($_POST["nick"], $_POST["email"], $_POST["passwd"]);
+                $result = $this->db->addUser($_POST["nick"], $_POST["email"], $_POST["passwd"], 1);
 
                 if($result) {
                     $_SESSION['logged_in']  = true;
                     $_SESSION['login_user'] =  $username;
+                    $_SESSION['login_role'] =  $this->db->getRole($username);
 
                     header("Location: index.php?page=uvod");
                     

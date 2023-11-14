@@ -47,9 +47,9 @@
         /**
          * Prida uzivatele do databaze
          */
-        public function addUser(string $username, string $email, string $password):bool {
+        public function addUser(string $username, string $email, string $password, int $role):bool {
             $hashPassword = password_hash($password, PASSWORD_BCRYPT);
-            $sql = "INSERT INTO " . TABLE_USERS . " (uz_jmeno, email, heslo) VALUES ('" . $username . "', '" . $email . "', '" . $hashPassword . "')";
+            $sql = "INSERT INTO " . TABLE_USERS . " (uz_jmeno, email, heslo, role) VALUES ('" . $username . "', '" . $email . "', '" . $hashPassword . "', '" . $role . "')";
             
             $result = $this->pdo->exec($sql);
             return $result;
@@ -110,6 +110,21 @@
             
             $result = $this->pdo->exec($sql);
             return $result;
+        }
+
+        /**
+         * Vrati roli na zaklade jmena uzivatele
+         */
+        public function getRole(string $username):int {
+            $sql = "SELECT role FROM ". TABLE_USERS . " WHERE uz_jmeno=:username";
+
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindParam(':username', $username);
+
+            $stmt->execute();
+            $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            return intval($data['role']);
         }
     }
 ?>

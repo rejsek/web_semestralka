@@ -47,11 +47,23 @@
 
                         <?php
                             if(!empty($_SESSION['login_user'])) {
-                                $res = "<li class='nav-item'>";
-                                $res .= "<a class='nav-link' href='index.php?page=pridat_clanek'>Přidat článek</a>";
-                                $res .= "</li>";
 
-                                echo $res;
+                                switch($_SESSION['login_role']) {
+                                    case 1:
+                                        $this->showRole1();
+                                        
+                                        break;
+
+                                    case 2:
+                                        $this->showRole2();
+                                        
+                                        break;
+
+                                    case 3:
+                                        $this->showRole3();
+                                        
+                                        break;
+                                }
                             }
                         ?>
 
@@ -121,6 +133,39 @@
                 </body>
                 </html>
             <?php
+        }
+
+        /**
+         * Ukaze moznosti pro roli = 1
+         */
+        private function showRole1() {
+            $res = "<li class='nav-item'>";
+            $res .= "<a class='nav-link' href='index.php?page=pridat_clanek'>Přidat článek</a>";
+            $res .= "</li>";
+
+            echo $res;
+        }
+
+        /**
+         * Ukaze moznosti pro roli = 2
+         */
+        private function showRole2() {
+            $res = "<li class='nav-item'>";
+            $res .= "<a class='nav-link' href='#'>Procházet články</a>";
+            $res .= "</li>";
+
+            echo $res;
+        }
+
+        private function showRole3() {
+            $this->showRole1();
+            $this->showRole2();
+
+            $res = "<li class='nav-item'>";
+            $res .= "<a class='nav-link' href='#'>Procházet  uživatele</a>";
+            $res .= "</li>";
+
+            echo $res;
         }
     }
 ?>
