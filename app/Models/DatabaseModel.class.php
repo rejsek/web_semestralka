@@ -126,5 +126,14 @@
 
             return intval($data['role']);
         }
+
+        /**
+         * Vrati vsechny uzivatele obsazene v databazi - bez admina
+         */
+        public function getUsers():array {
+            $sql = "SELECT * FROM " . TABLE_USERS . " WHERE role < 3";
+
+            return $this->pdo->query($sql)->fetchAll();
+        }
     }
 ?>

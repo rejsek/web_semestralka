@@ -162,7 +162,7 @@
             $this->showRole2();
 
             $res = "<li class='nav-item'>";
-            $res .= "<a class='nav-link' href='#'>Procházet  uživatele</a>";
+            $res .= "<a class='nav-link' href='index.php?page=sprava_uzivatelu'>Procházet  uživatele</a>";
             $res .= "</li>";
 
             echo $res;

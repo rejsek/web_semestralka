@@ -125,6 +125,16 @@
             "class_name" => "AddArticle",
         ),
         //// KONEC: Formular na pridani clanku ////
+
+        //// Formular na spravu uzivatelu ////
+        "sprava_uzivatelu" => array(
+            "title"=> "Správa uživatelů",
+
+            //// kontroler
+            "file_name" => "UsersAdministration.class.php",
+            "class_name" => "UsersAdministration",
+        ),
+        //// KONEC: Formular na sprava uzivatelu ////
     );
 
     // Stranky webu //
