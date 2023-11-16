@@ -135,7 +135,17 @@
             "class_name" => "UsersAdministration",
         ),
         //// KONEC: Formular na sprava uzivatelu ////
+
+        //// Formular na editaci uzivatele ////
+        "editace_uzivatele" => array(
+            "title"=> "Editace uživatele",
+
+            //// kontroler
+            "file_name" => "UserEdit.class.php",
+            "class_name" => "UserEdit",
+        ),
+        //// KONEC: Formular na editaci uzivatele ////
     );
 
-    // Stranky webu //
+    // KONEC: Stranky webu //
 ?>

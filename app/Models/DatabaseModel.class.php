@@ -135,5 +135,15 @@
 
             return $this->pdo->query($sql)->fetchAll();
         }
+
+        /**
+         * Upravi informace o danem uzivateli
+         */
+        public function updateDataUser($username, $email, $role, $user):bool {
+            $sql = "UPDATE ". TABLE_USERS . " SET uz_jmeno='" . $username . "', email='" . $email . "', role='" . $role . "' WHERE uz_jmeno='" . $user . "'";
+
+            $result = $this->pdo->exec($sql);
+            return $result;
+        }
     }
 ?>

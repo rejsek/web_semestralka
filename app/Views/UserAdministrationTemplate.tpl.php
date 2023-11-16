@@ -34,7 +34,7 @@
             $res .= "<th scope='row'>" . $user['email'] . "</th>";
             $res .= "<th scope='row'>" . $user['role'] . "</th>";
             $res .= "<th scope='row'>";
-            $res .= '<a id="edit_icon" href="index.php?page=sprava_uzivatelu&id=' . $user["uz_jmeno"] . '">';
+            $res .= '<a id="edit_icon" href="index.php?page=editace_uzivatele&name=' . $user["uz_jmeno"] . '">';
             $res .= "<li class='fa fa-edit'></li>
                      </th>";
 

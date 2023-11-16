@@ -1,0 +1,44 @@
+<?php
+  global $tplData;
+?>
+
+<div class="form_div" align="center">
+    <form method="POST" accept-charset="UTF-8">
+      <div class="col-auto">
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <i class="fa fa-user-circle" style="font-size: 20px;"></i>
+            </div>
+          </div>
+          <input type="text" name="nick" class="form-control form-control-lg" id="inlineFormInputGroup" value="<?php echo $data['uz_jmeno'];?>" autofocus tabindex="1" required>
+        </div>
+      </div>
+
+      <div class="col-auto">
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <i class="fa fa-envelope" style="font-size: 20px;"></i>
+            </div>
+          </div>
+          <input type="email" name="email" pattern="[^@\s]+@[^@\s]+\.[a-zA-Z]{2,4}" class="form-control form-control-lg" id="inlineFormInputGroup" value="<?php echo $data['email'];?>" tabindex="2" required>
+        </div>
+      </div>
+
+      <div class="col-auto">
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <i class="fa fa-eye" style="font-size: 20px;"></i>
+            </div>
+          </div>
+          <input type="text" name="role" class="form-control form-control-lg" id="inlineFormInputGroup" value="<?php echo $data['role'];?>" autofocus tabindex="1" required>
+        </div>
+      </div>
+      
+      <div class="submit_button">
+        <button type="submit" name="action" value="update" class="btn btn-success btn-lg" tabindex="3">Uložit změny</button>
+      </div>
+    </form>
+  </div>
