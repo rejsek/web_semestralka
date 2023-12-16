@@ -34,15 +34,15 @@
                     Konference
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                        <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                        <a class="nav-link" href="index.php?page=uvod">Domů</a>
+                            <a class="nav-link" href="index.php?page=uvod">Domů</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link" href="#">Články</a>
+                            <a class="nav-link" href="#">Články</a>
                         </li>
 
                         <?php
@@ -151,7 +151,7 @@
          */
         private function showRole2() {
             $res = "<li class='nav-item'>";
-            $res .= "<a class='nav-link' href='#'>Procházet články</a>";
+            $res .= "<a class='nav-link' href='index.php?page=hodnoceni_clanku'>Procházet články</a>";
             $res .= "</li>";
 
             echo $res;

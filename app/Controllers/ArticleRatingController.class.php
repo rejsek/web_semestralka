@@ -4,7 +4,7 @@
     /**
      * Ovladac zajistujici vypsani uvodni stranky
      */
-    class UserEdit implements IController {
+    class ArticleRating implements IController {
         
         /**
          * @var DatabaseModel $db       Sprava databaze
@@ -36,36 +36,19 @@
          * @return string               Vypis v sablone
          */
         public function show(string $pageTitle):string {
-            //// vsechna data sablony budou globalni
             global $tplData;
-            $profileName = $_GET['name'];   //id rozkliknuteho profilu
-
             $tplData = [];
             // nazev
             $tplData['title'] = $pageTitle;
-            // data profilu
-            $tplData['profile_detail'] = $this->db->getProfileByName($profileName);
-
-            $result = false;
             
-            if(isset($_POST['action']) and $_POST['action'] == "update") {
-                $result = $this->db->updateDataUser($_POST["nick"], $_POST["email"], $_POST["role"], $_GET['name']);
+            $tplData['articles'] = $this->db->getAllArticles();
 
-            } else if(isset($_POST['action']) and $_POST['action'] == "delete"){
-                $result = $this->db->deleteUser($_GET['name']);
-            }
-
-            if($result) {
-                header("Location: index.php?page=sprava_uzivatelu");
-            }
-            
             ob_start();
-            // pripojim sablonu, cimz ji i vykonam
-            require(DIRECTORY_VIEWS ."/UserEditTemplate.tpl.php");
-            // ziskam obsah output bufferu, tj. vypsanou sablonu
-            $content = ob_get_clean();
+            
+            require_once(DIRECTORY_VIEWS . "/ArticleRatingTemplate.tpl.php");
 
-            // vratim sablonu naplnenou daty
+            $content = ob_get_clean();
+            
             return $content;
         }
     }

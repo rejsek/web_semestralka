@@ -9,9 +9,7 @@
     // Hlavicka stranky //
     $templates->getHeader($tplData['title']);
 
-    $row = 1;
-
-    $res = "<div class='users_administration'>";
+    $res = "<div class='administration'>";
     $res .= "<h1>Správa uživatelů</h1>";
     $res .= "<table class='table table-hover table-bordered'>";
 
@@ -29,7 +27,12 @@
         foreach($tplData['users'] as $user) {
             $res .= "<tbody><tr>";
             
-            $res .= "<th scope='row'>" . $row . "</th>";
+            if($user['role'] == 1) {
+                $res .= "<th scope='row'><li class='fa fa-male'></li></th>";
+            } else {
+                $res .= "<th scope='row'><li class='fa fa-comment'></li></th>";
+            }
+
             $res .= "<th scope='row'>" . $user['uz_jmeno'] . "</th>";
             $res .= "<th scope='row'>" . $user['email'] . "</th>";
             $res .= "<th scope='row'>" . $user['role'] . "</th>";
@@ -39,8 +42,6 @@
                      </th>";
 
             $res .= "</tr></tbody>";
-
-            $row += 1;
         }
     }
 

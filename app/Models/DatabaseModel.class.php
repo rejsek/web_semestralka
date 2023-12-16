@@ -145,5 +145,15 @@
             $result = $this->pdo->exec($sql);
             return $result;
         }
+
+        /**
+         * Smaze uzivatele z databaze
+         */
+        public function deleteUser($username) {
+            $sql = "DELETE FROM ". TABLE_USERS . " WHERE uz_jmeno='" . $username . "'";
+
+            $result = $this->pdo->exec($sql);
+            return $result;
+        }
     }
 ?>

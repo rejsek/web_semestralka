@@ -25,12 +25,10 @@ nav {
 }
 
 nav a {
-    color: rgb(40, 167, 69);
     transition: color 0.5s;
 }
 
 nav a:hover {
-    color: rgb(36, 189, 71);
     text-decoration: none;
 }
 
@@ -42,7 +40,7 @@ nav a:hover {
     padding-bottom: 6.5rem;
 }
 
-form {
+.form_div form {
     margin-top: 7%;
     width: 30%;
     height: 80%;
@@ -64,6 +62,10 @@ input {
 
 .submit_button button:hover{
     width: 55%;
+}
+
+#delete_button {
+    margin-top: 5%;
 }
 
 /*-------------------------------------Formular-------------------------------------*/
@@ -247,27 +249,27 @@ img {
     text-align: center;
 }
 
-.detail_profile  i {
+.detail_profile i {
     font-size: 10em;
     color: gray;
 }
 
 /*-------------------------------------Detail uzivatele-------------------------------------*/
 
-/*-------------------------------------Sprava uzivatelu-------------------------------------*/
+/*-------------------------------------Sprava uzivatelu a clanku-------------------------------------*/
 
-.users_administration {
+.administration {
     text-align: center;
 }
 
-.users_administration h1 {
+.administration h1 {
     margin-top: 5%;
     margin-bottom: 5%;
     text-decoration: underline;
     text-decoration-color: rgb(36, 189, 71);
 }
 
-.users_administration table {
+.administration table {
     width: 80%;
     margin-left: auto;
     margin-right: auto;
@@ -284,7 +286,43 @@ img {
     transition: 0.5s;
 }
 
-/*-------------------------------------Sprava uzivatelu-------------------------------------*/
+/*-------------------------------------Sprava uzivatelu a clanku-------------------------------------*/
+
+/*-------------------------------------Formular pro pridani clanku-------------------------------------*/
+
+.add_article_div {
+    padding-bottom: 6.5rem;
+}
+
+.add_article_div form {
+    margin-top: 7%;
+    height: 80%;
+    max-width: 80%;
+}
+
+.add_article_div h1 {
+    margin-bottom: 5%;
+    text-decoration: underline;
+    text-decoration-color: rgb(36, 189, 71);
+}
+
+.add_article_div .input-group {
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.add_article_div .col-auto {
+    margin-bottom: 2%;
+}
+
+.add_article_div .submit_button {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*-------------------------------------Formular pro pridani clanku-------------------------------------*/
 
 /*-------------------------------------Paticka-------------------------------------*/
 
@@ -299,6 +337,20 @@ footer {
 /*-------------------------------------Responzivni-------------------------------------*/
 
 @media only screen and (max-width: 576px) {
+    .about {
+        height: 100%;
+    }
+
+    #main_title {
+        font-size: 100px;
+        padding-top: 20%;
+        padding-bottom: 5%;
+    }
+
+    .container {
+        display: table;
+    }
+
     form {
         width: 100%;
     }

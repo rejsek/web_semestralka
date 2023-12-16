@@ -145,6 +145,16 @@
             "class_name" => "UserEdit",
         ),
         //// KONEC: Formular na editaci uzivatele ////
+
+        //// Formular na hodnoceni clanku ////
+        "hodnoceni_clanku" => array(
+            "title"=> "Hodnocení článků",
+
+            //// kontroler
+            "file_name" => "ArticleRatingController.class.php",
+            "class_name" => "ArticleRating",
+        ),
+        //// KONEC: Formular na hodnoceni clanku ////
     );
 
     // KONEC: Stranky webu //
