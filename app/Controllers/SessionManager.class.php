@@ -42,7 +42,22 @@
          * Pridani clanku do databaze
          */
         public function addArticle(string $title, string $text) {
-            $this->db->addArticle($title, $text, $_SESSION['login_user']);
+            $uploads_dir = '../web_semestralka/pictures/' . $_SESSION['login_user'];
+            $error = $_FILES["picture"]["error"];
+
+            if (!file_exists($uploads_dir)) {
+                mkdir($uploads_dir, 0755, true);
+            }
+
+            if ($error == UPLOAD_ERR_OK) {
+                $tmp_name = $_FILES["picture"]["tmp_name"];
+                $name = basename($_FILES["picture"]["name"]);
+                move_uploaded_file($tmp_name, "$uploads_dir/$name");
+            }
+
+            $uploads_dir .= '/' . $_FILES["picture"]["name"];
+
+            $this->db->addArticle($title, $uploads_dir, $text, $_SESSION['login_user']);
         }
 
         /**

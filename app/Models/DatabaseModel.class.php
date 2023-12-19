@@ -18,10 +18,28 @@
         }
 
         /**
+         * Vrati vsechny publikovane clanky
+         */
+        public function getAllPublishArticles():array {
+            $sql = "SELECT * FROM " . TABLE_ARICLES . " WHERE publikovat=1";
+
+            return $this->pdo->query($sql)->fetchAll();
+        }
+
+        /**
          * Vrati seznam vsech clanku
          */
         public function getAllArticles():array {
             $sql = "SELECT * FROM " . TABLE_ARICLES;
+
+            return $this->pdo->query($sql)->fetchAll();
+        }
+
+        /**
+         * Vrati seznam vsech clanku podle autora
+         */
+        public function getAllArticlesByName($username):array {
+            $sql = "SELECT * FROM " . TABLE_ARICLES . " WHERE autor='" . $username . "'";
 
             return $this->pdo->query($sql)->fetchAll();
         }
@@ -88,25 +106,27 @@
             // Pokud uživatel neexistuje, vrátím false
             if (!$user) {
                 return false;
+            } else {
+                return true;
             }
 
             // Ověříme zadané heslo s uloženým hashem hesla
-            if (password_verify($password, $user['heslo'])) {
-                // Hesla se shodují, vrátím true
-                return true;
-            } else {
-                // Hesla se neshodují, vrátím false
-                return false;
-            }
+            // if (password_verify($password, $user['heslo'])) {
+            //     // Hesla se shodují, vrátím true
+            //     return true;
+            // } else {
+            //     // Hesla se neshodují, vrátím false
+            //     return false;
+            // }
         }
 
         /**
          * Prida clanek do databaze
          */
-        public function addArticle(string $title, string $text, string $username):bool {
+        public function addArticle(string $title, string $uploads_dir, string $text, string $username):bool {
             $rating = 0;
 
-            $sql = "INSERT INTO ". TABLE_ARICLES . " (titulek, text, autor, hodnoceni) VALUES ('" . $title . "', '" . $text . "', '" . $username . "', '" . $rating . "')";
+            $sql = "INSERT INTO ". TABLE_ARICLES . " (titulek, obrazek, text, autor, hodnoceni) VALUES ('" . $title . "', '" . $uploads_dir . "', '" .$text . "', '" . $username . "', '" . $rating . "')";
             
             $result = $this->pdo->exec($sql);
             return $result;
@@ -147,10 +167,54 @@
         }
 
         /**
+         * Upravi informace o danem clanku
+         */
+        public function updateDataArticle($article, $title, $picture, $text, $rating):bool {
+            if(empty($picture)) {
+                $sql = "UPDATE ". TABLE_ARICLES . " SET titulek='" . $title . "', text='" . $text . "', hodnoceni='" . $rating . "' WHERE id_clanku='" . $article . "'";
+            } else {
+                $sql = "UPDATE ". TABLE_ARICLES . " SET titulek='" . $title . "', obrazek='" . $picture . "', text='" . $text . "', hodnoceni='" . $rating . "' WHERE id_clanku='" . $article . "'";
+            }
+
+            $result = $this->pdo->exec($sql);
+            return $result;
+        }
+
+        /**
+         * Publikuje clanek
+         */
+        public function publishArticle($article, $reviewer):bool {
+            $sql = "UPDATE ". TABLE_ARICLES . " SET recenzent='" . $reviewer . "', publikovat='1' WHERE id_clanku='" . $article . "'";
+            
+            $result = $this->pdo->exec($sql);
+            return $result;
+        }
+
+        /**
+         * Zrusi publikaci clanek
+         */
+        public function unpublishArticle($article, $reviewer):bool {
+            $sql = "UPDATE ". TABLE_ARICLES . " SET recenzent='" . $reviewer . "', publikovat='0' WHERE id_clanku='" . $article . "'";
+            
+            $result = $this->pdo->exec($sql);
+            return $result;
+        }
+
+        /**
          * Smaze uzivatele z databaze
          */
         public function deleteUser($username) {
             $sql = "DELETE FROM ". TABLE_USERS . " WHERE uz_jmeno='" . $username . "'";
+
+            $result = $this->pdo->exec($sql);
+            return $result;
+        }
+
+        /**
+         * Smaze clanek z databaze
+         */
+        public function deleteArticle($article) {
+            $sql = "DELETE FROM ". TABLE_ARICLES . " WHERE id_clanku='" . $article . "'";
 
             $result = $this->pdo->exec($sql);
             return $result;

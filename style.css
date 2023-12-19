@@ -297,7 +297,7 @@ img {
 .add_article_div form {
     margin-top: 7%;
     height: 80%;
-    max-width: 80%;
+    width: 80%;
 }
 
 .add_article_div h1 {
@@ -307,7 +307,7 @@ img {
 }
 
 .add_article_div .input-group {
-    max-width: 50%;
+    width: 50%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -320,6 +320,19 @@ img {
     width: 50%;
     margin-left: auto;
     margin-right: auto;
+}
+
+.add_article_div form img {
+    width: 50%;
+    margin-bottom: 30px;
+}
+
+.add_article_div #delete_button {
+    margin-top: 10%;
+}
+
+.add_article_div button {
+    margin-right: 5%;
 }
 
 /*-------------------------------------Formular pro pridani clanku-------------------------------------*/
@@ -338,20 +351,31 @@ footer {
 
 @media only screen and (max-width: 576px) {
     .about {
-        height: 100%;
+        height: 100vh;
+        background-size: 170vh auto;
     }
 
     #main_title {
-        font-size: 100px;
-        padding-top: 20%;
-        padding-bottom: 5%;
+        font-size: 70px;
+        padding-top: 30%;
     }
 
     .container {
-        display: table;
+        display: block;
+        padding-left: 0;
     }
 
-    form {
+    .container .left_container {
+        margin-left: 12%;
+        margin-right: auto;
+    }
+
+    .container .right_container {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .form_div form {
         width: 100%;
     }
 
@@ -360,7 +384,7 @@ footer {
     }
 
     .grid_div {
-        grid-template-columns: 90%;
+        grid-template-columns: 100%;
     }
 
     .detail_of_article {
@@ -371,19 +395,62 @@ footer {
     .detail_of_article img {
         width: 100%;
     }
-}
 
-@media only screen and (max-width: 768px) and (min-width: 576px) {
-    form {
+    .add_article_div form {
         width: 100%;
     }
 
-    .submit_button button {
+    .add_article_div form .input-group{
+        width: 100%;
+    }
+
+    .add_article_div form img {
+        width: 94%;
+    }
+}
+
+@media only screen and (max-width: 990px) and (min-width: 576px) {
+    .about {
+        background-size: 175vh auto;
+    }
+    
+    .form_div form {
         width: 80%;
+    }
+
+    .submit_button button {
+        width: 55%;
+    }
+
+    .container .left_container {
+        padding-top: 6%;
+    }
+
+    .container .right_container {
+        padding-top: 0;
+        padding-bottom: 7%;
     }
     
     .grid_div {
         grid-template-columns: 45% 45%;
+    }
+
+    .grid_item img {
+        width: 100%;
+        height: 30vh;
+        border-radius: 0px;
+    }
+
+    .add_article_div form {
+        width: 100%;
+    }
+
+    .add_article_div form .input-group{
+        width: 100%;
+    }
+
+    .add_article_div form img {
+        width: 96%;
     }
 }
 

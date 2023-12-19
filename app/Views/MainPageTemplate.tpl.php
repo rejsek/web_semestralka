@@ -21,7 +21,7 @@
             $res .= "<div class=grid_item>";
             
             if (!empty($data["obrazek"])) {
-                $res .= '<img src="data:image/jpeg;base64,' . base64_encode($data["obrazek"]) . '">'; // Zde přidáme obrázek, pokud existuje
+                $res .= '<img src="' . $data["obrazek"] .'">'; // Zde přidáme obrázek, pokud existuje
             }
 
             $res .= "<h2>$data[titulek]</h2>";

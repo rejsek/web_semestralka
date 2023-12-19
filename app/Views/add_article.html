@@ -1,5 +1,5 @@
 <div class="add_article_div" align="center">
-    <form method="POST" accept-charset="UTF-8">
+    <form method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
       <h1>Přidat nový článek</h1>
 
       <div class="col-auto">
@@ -13,16 +13,16 @@
         </div>
       </div>
       
-      <!-- <div class="col-auto">
+      <div class="col-auto">
         <div class="input-group mb-2">
           <div class="input-group-prepend">
             <div class="input-group-text">
               <i class="fa fa-image" style="font-size:14px"></i>
             </div>
           </div>
-          <input type="file" name="picture" class="form-control form-control-lg" id="inlineFormInputGroup" tabindex="2" required>
+          <input type="file" name="picture" accept="image/png, image/gif, image/jpeg" class="form-control form-control-lg" id="inlineFormInputGroup" tabindex="2" required>
         </div>
-      </div> -->
+      </div>
 
       <div class="col-auto">
             <textarea id="article_text" rows="30" type="text" name="text" class="form-control form-control-lg" id="inlineFormInputGroup" placeholder="Obsah článku" tabindex="3" required></textarea>

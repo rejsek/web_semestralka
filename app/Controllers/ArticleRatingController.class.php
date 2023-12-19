@@ -41,7 +41,15 @@
             // nazev
             $tplData['title'] = $pageTitle;
             
-            $tplData['articles'] = $this->db->getAllArticles();
+            
+
+            if($_SESSION['logged_in']) {
+                if($_SESSION['login_role'] != 1) {
+                    $tplData['articles'] = $this->db->getAllArticles();
+                } else {
+                    $tplData['articles'] = $this->db->getAllArticlesByName($_SESSION['login_user']);
+                }
+            }
 
             ob_start();
             

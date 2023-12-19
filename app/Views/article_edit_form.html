@@ -1,0 +1,42 @@
+<?php
+  global $tplData;
+?>
+
+<div class="add_article_div" align="center">
+    <form method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
+      <h1>Upravit článek</h1>
+
+      <div class="col-auto">
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <i class="fa fa-bold" style="font-size: 20px;"></i>
+            </div>
+          </div>
+          <input type="text" name="title" class="form-control form-control-lg" id="inlineFormInputGroup" value="<?php echo $data['titulek'];?>" placeholder="Titulek článku" autofocus tabindex="1" required>
+        </div>
+      </div>
+
+      <img src="<?php echo $data['obrazek'];?>">
+      
+      <div class="col-auto">
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <i class="fa fa-image" style="font-size:14px"></i>
+            </div>
+          </div>
+          <input type="file" name="picture" accept="image/png, image/gif, image/jpeg" class="form-control form-control-lg" id="inlineFormInputGroup" value="" tabindex="2">
+        </div>
+      </div>
+
+      <div class="col-auto">
+            <textarea id="article_text" rows="30" type="text" name="text" class="form-control form-control-lg" id="inlineFormInputGroup" placeholder="Obsah článku" tabindex="3" required><?php echo $data['text'];?></textarea>
+      </div>
+
+      <div class="col-auto">
+        <label for="quantity">Hodnocení zadávejte mezi 1 až 5:</label>
+        <input type="number" value="<?php echo $data['hodnoceni'];?>" id="quantity" name="rating" min="1" max="5">
+      </div>
+
+      <div class="submit_button">

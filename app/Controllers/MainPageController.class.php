@@ -37,7 +37,7 @@
             // nazev
             $tplData['title'] = $pageTitle;
             // data clanky
-            $tplData['articles'] = $this->db->getAllArticles();
+            $tplData['articles'] = $this->db->getAllPublishArticles();
 
             //// vypsani prislusne sablony
             // zapnu output buffer pro odchyceni vypisu sablony

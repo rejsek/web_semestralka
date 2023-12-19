@@ -51,6 +51,7 @@
                                 switch($_SESSION['login_role']) {
                                     case 1:
                                         $this->showRole1();
+                                        $this->showRole2();
                                         
                                         break;
 

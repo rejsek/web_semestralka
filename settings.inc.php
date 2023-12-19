@@ -155,6 +155,16 @@
             "class_name" => "ArticleRating",
         ),
         //// KONEC: Formular na hodnoceni clanku ////
+
+        //// Formular na editaci clanku ////
+        "editace_clanku" => array(
+            "title"=> "Editace článků",
+
+            //// kontroler
+            "file_name" => "ArticleEditController.class.php",
+            "class_name" => "ArticleEdit",
+        ),
+        //// KONEC: Formular na editaci clanku ////
     );
 
     // KONEC: Stranky webu //

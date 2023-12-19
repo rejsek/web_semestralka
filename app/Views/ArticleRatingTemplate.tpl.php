@@ -13,15 +13,47 @@
     $res .= "<h1>Správa článků</h1>";
     $res .= "<table class='table table-hover table-bordered'>";
 
-    $res .= "<thead>
-                <tr>
-                <th scope='col'></th>
-                <th scope='col'>Název článku</th>
-                <th scope='col'>Autor</th>
-                <th scope='col'>Hodnocení</th>
-                <th scope='col'>Publikovat</th>
-                </tr>
-            </thead>";    
+    switch($_SESSION['login_role']) {
+        case 1:
+            $res .= "<thead>
+                        <tr>
+                        <th scope='col'></th>
+                        <th scope='col'>Název článku</th>
+                        <th scope='col'>Recenzent</th>
+                        <th scope='col'>Hodnocení</th>
+                        <th scope='col'>Editovat</th>
+                        </tr>
+                    </thead>";
+                    
+            break;
+
+        case 2:
+            $res .= "<thead>
+                        <tr>
+                        <th scope='col'></th>
+                        <th scope='col'>Název článku</th>
+                        <th scope='col'>Autor</th>
+                        <th scope='col'>Hodnocení</th>
+                        <th scope='col'>Editovat</th>
+                        </tr>
+                    </thead>";
+
+            break;
+
+        case 3:
+            $res .= "<thead>
+                        <tr>
+                        <th scope='col'></th>
+                        <th scope='col'>Název článku</th>
+                        <th scope='col'>Autor</th>
+                        <th scope='col'>Hodnocení</th>
+                        <th scope='col'>Recenzent</th>
+                        <th scope='col'>Editovat</th>
+                        </tr>
+                    </thead>";
+        
+            break;
+    }
     
     if(array_key_exists('articles', $tplData)) {
         foreach($tplData['articles'] as $article) {
@@ -33,12 +65,37 @@
             $res .= '<a href="index.php?page=detail_clanku&id=' . $article["id_clanku"] .'">' . $article['titulek'] . '</a>';
             $res .= "</th>";
 
-            $res .= "<th scope='row'>" . $article['autor'] . "</th>";
+            switch($_SESSION['login_role']) {
+                case 1:
+                    if(!empty($article['recenzent'])) {
+                        $res .= "<th scope='row'>" . $article['recenzent'] . "</th>";
+                    } else {
+                        $res .= "<th scope='row'>-není recenzován-</th>";
+                    }
 
-            $res .= '<th scope="row"><output id="rating_output" for="lb_rating">1</output><input type="range" min="1" max="5" value="1" class="slider" id="lb_rating" oninput="rating_output.value = parseInt(lb_rating.value);"></th>';
+                    break;
 
-            $res .= '<th scope="row"><input type="checkbox" id="check" name="check" value="1"></th>';
-            
+                case 2:
+                case 3:
+                    $res .= "<th scope='row'>" . $article['autor'] . "</th>";
+
+                    break;
+            }
+
+            $res .= "<th scope='row'>" . $templates->show_starts(intval($article["hodnoceni"])) . "</th>";
+
+            if($_SESSION['login_role'] == 3) {
+                if(!empty($article['recenzent'])) {
+                    $res .= "<th scope='row'>" . $article['recenzent'] . "</th>";
+                } else {
+                    $res .= "<th scope='row'>-není recenzován-</th>";
+                }
+            }
+
+            $res .= "<th scope='row'>";
+            $res .= '<a id="edit_icon" href="index.php?page=editace_clanku&id=' . $article["id_clanku"] . '">';
+            $res .= "<li class='fa fa-edit'></li></th>";
+
             $res .= "</tr></tbody>";
         }
     }

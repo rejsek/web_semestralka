@@ -15,17 +15,13 @@
 
     if(array_key_exists("detail", $tplData)) {
         foreach($tplData["detail"] as $data) {
-            if(!empty($_SESSION['login_role']) and $_SESSION['login_role'] > 1) {
-                $res .= '<button type="button" class="btn btn-danger">Smazat článek</button>';
-            }
-
             $res .= '<div class="detail_of_article">';
             
             $res .= '<h1>' . $data["titulek"] . '</h1>';
             $res .= '<h2>' . $data["autor"] . '</h2>';
 
             if (!empty($data["obrazek"])) {
-                $res .= '<img src="data:image/jpeg;base64,' . base64_encode($data["obrazek"]) . '">'; // Zde přidáme obrázek, pokud existuje
+                $res .= '<img src="' . $data["obrazek"] .'">';
             }
 
             $res .= '<p id="detail_text">' . $data["text"] . '</p>';
