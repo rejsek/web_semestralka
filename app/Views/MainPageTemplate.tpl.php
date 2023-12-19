@@ -35,7 +35,7 @@
             
             $res .= '</p>';
 
-            $res .= '<p id="autor_of_article">' . '<i class="fa fa-user"></i> : ' . $data["autor"] . '</p>';
+            $res .= '<p id="autor_of_article">' . '<i class="fa fa-user"></i> : ' . $data["uz_jmeno"] . '</p>';
 
             $res .= '</div>';
 

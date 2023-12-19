@@ -43,7 +43,7 @@
             $tplData['title'] = $pageTitle;
             
             if(isset($_POST['action']) and $_POST['action'] == "send") {
-                $this->session->addUser($_POST["nick"], $_POST["email"], $_POST["passwd"]);
+                $this->session->addUser(htmlspecialchars($_POST["nick"]), htmlspecialchars($_POST["email"]), htmlspecialchars($_POST["passwd"]));
             }
 
             ob_start();

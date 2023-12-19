@@ -39,15 +39,13 @@
             global $tplData;
             $tplData = [];
             // nazev
-            $tplData['title'] = $pageTitle;
-            
-            
+            $tplData['title'] = $pageTitle;                      
 
             if($_SESSION['logged_in']) {
                 if($_SESSION['login_role'] != 1) {
                     $tplData['articles'] = $this->db->getAllArticles();
                 } else {
-                    $tplData['articles'] = $this->db->getAllArticlesByName($_SESSION['login_user']);
+                    $tplData['articles'] = $this->db->getAllArticlesById(htmlspecialchars($_SESSION['login_user_id']));
                 }
             }
 

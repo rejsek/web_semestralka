@@ -18,7 +18,7 @@
             $res .= '<div class="detail_of_article">';
             
             $res .= '<h1>' . $data["titulek"] . '</h1>';
-            $res .= '<h2>' . $data["autor"] . '</h2>';
+            $res .= '<h2>' . $data["uz_jmeno"] . '</h2>';
 
             if (!empty($data["obrazek"])) {
                 $res .= '<img src="' . $data["obrazek"] .'">';

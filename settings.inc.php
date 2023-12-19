@@ -13,7 +13,7 @@
     /**
      * Nazev databaze
      */
-    define("DB_NAME", "test");
+    define("DB_NAME", "web_semestralka");
 
     /**
      * Uzivatel databaze
@@ -33,7 +33,12 @@
     /**
      * Tabulka s autory
      */
-    define("TABLE_USERS", "autori");
+    define("TABLE_USERS", "uzivatele");
+
+    /**
+     * Tabulka s rolemi
+     */
+    define("TABLE_ROLES", "role");
 
     // Pripojeni k databazi //
 

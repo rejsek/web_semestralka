@@ -77,7 +77,7 @@
 
                 case 2:
                 case 3:
-                    $res .= "<th scope='row'>" . $article['autor'] . "</th>";
+                    $res .= "<th scope='row'>" . $article['uz_jmeno'] . "</th>";
 
                     break;
             }

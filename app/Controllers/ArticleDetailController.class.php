@@ -33,7 +33,7 @@
         public function show(string $pageTitle):string {
             //// vsechna data sablony budou globalni
             global $tplData;
-            $articleId = $_GET['id'];   //id rozkliknuteho clanku
+            $articleId = htmlspecialchars($_GET['id']);   //id rozkliknuteho clanku
 
             $tplData = [];
             // nazev

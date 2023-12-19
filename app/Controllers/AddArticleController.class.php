@@ -43,7 +43,7 @@
             $tplData['title'] = $pageTitle;
 
             if(isset($_POST['action']) and $_POST['action'] == "add") {
-                $this->session->addArticle($_POST["title"], $_POST["text"]);
+                $this->session->addArticle(htmlspecialchars($_POST["title"]), htmlspecialchars($_POST["text"]));
             }
 
             ob_start();

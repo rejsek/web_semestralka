@@ -38,7 +38,7 @@
         public function show(string $pageTitle):string {
             //// vsechna data sablony budou globalni
             global $tplData;
-            $profileName = $_GET['name'];   //id rozkliknuteho profilu
+            $profileName = htmlspecialchars($_GET['name']);   //id rozkliknuteho profilu
 
             $tplData = [];
             // nazev

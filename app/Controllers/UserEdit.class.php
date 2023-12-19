@@ -38,7 +38,7 @@
         public function show(string $pageTitle):string {
             //// vsechna data sablony budou globalni
             global $tplData;
-            $profileName = $_GET['name'];   //id rozkliknuteho profilu
+            $profileName = htmlspecialchars($_GET['name']);   //id rozkliknuteho profilu
 
             $tplData = [];
             // nazev
@@ -49,10 +49,10 @@
             $result = false;
             
             if(isset($_POST['action']) and $_POST['action'] == "update") {
-                $result = $this->db->updateDataUser($_POST["nick"], $_POST["email"], $_POST["role"], $_GET['name']);
+                $result = $this->db->updateDataUser(htmlspecialchars($_POST["nick"]), htmlspecialchars($_POST["email"]), htmlspecialchars($_POST["role"]), htmlspecialchars($_GET['name']));
 
             } else if(isset($_POST['action']) and $_POST['action'] == "delete"){
-                $result = $this->db->deleteUser($_GET['name']);
+                $result = $this->db->deleteUser(htmlspecialchars($_GET['name']));
             }
 
             if($result) {

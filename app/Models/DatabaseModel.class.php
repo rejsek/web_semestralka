@@ -21,7 +21,7 @@
          * Vrati vsechny publikovane clanky
          */
         public function getAllPublishArticles():array {
-            $sql = "SELECT * FROM " . TABLE_ARICLES . " WHERE publikovat=1";
+            $sql = "SELECT * FROM " . TABLE_ARICLES . " JOIN " . TABLE_USERS . " ON " . TABLE_ARICLES . ".id_autor=" . TABLE_USERS . ".id_uzivatele" . " WHERE publikovat=1";
 
             return $this->pdo->query($sql)->fetchAll();
         }
@@ -30,7 +30,7 @@
          * Vrati seznam vsech clanku
          */
         public function getAllArticles():array {
-            $sql = "SELECT * FROM " . TABLE_ARICLES;
+            $sql = "SELECT * FROM " . TABLE_ARICLES . " JOIN " . TABLE_USERS . " ON " . TABLE_ARICLES . ".id_autor=" . TABLE_USERS . ".id_uzivatele";
 
             return $this->pdo->query($sql)->fetchAll();
         }
@@ -38,8 +38,8 @@
         /**
          * Vrati seznam vsech clanku podle autora
          */
-        public function getAllArticlesByName($username):array {
-            $sql = "SELECT * FROM " . TABLE_ARICLES . " WHERE autor='" . $username . "'";
+        public function getAllArticlesById($id):array {
+            $sql = "SELECT * FROM " . TABLE_ARICLES . " WHERE id_autor='" . $id . "'";
 
             return $this->pdo->query($sql)->fetchAll();
         }
@@ -48,7 +48,7 @@
          * Vrati detailni informace o clanku
          */
         public function getArticleById(int $id):array {
-            $sql = "SELECT * FROM " . TABLE_ARICLES . " WHERE id_clanku=" . $id;
+            $sql = "SELECT * FROM " . TABLE_ARICLES . " JOIN " . TABLE_USERS . " ON " . TABLE_ARICLES . ".id_autor=" . TABLE_USERS . ".id_uzivatele" . " WHERE id_clanku=" . $id;
 
             return $this->pdo->query($sql)->fetchAll();
         }
@@ -68,7 +68,8 @@
         public function addUser(string $username, string $email, string $password, int $role):bool {
             $hashPassword = password_hash($password, PASSWORD_BCRYPT);
             $sql = "INSERT INTO " . TABLE_USERS . " (uz_jmeno, email, heslo, role) VALUES ('" . $username . "', '" . $email . "', '" . $hashPassword . "', '" . $role . "')";
-            
+            echo $sql;
+
             $result = $this->pdo->exec($sql);
             return $result;
         }
@@ -111,25 +112,41 @@
             }
 
             // Ověříme zadané heslo s uloženým hashem hesla
-            // if (password_verify($password, $user['heslo'])) {
-            //     // Hesla se shodují, vrátím true
-            //     return true;
-            // } else {
-            //     // Hesla se neshodují, vrátím false
-            //     return false;
-            // }
+            if (password_verify($password, $user['heslo'])) {
+                // Hesla se shodují, vrátím true
+                return true;
+            } else {
+                // Hesla se neshodují, vrátím false
+                return false;
+            }
         }
 
         /**
          * Prida clanek do databaze
          */
-        public function addArticle(string $title, string $uploads_dir, string $text, string $username):bool {
+        public function addArticle(string $title, string $uploads_dir, string $text, string $user_id):bool {
             $rating = 0;
 
-            $sql = "INSERT INTO ". TABLE_ARICLES . " (titulek, obrazek, text, autor, hodnoceni) VALUES ('" . $title . "', '" . $uploads_dir . "', '" .$text . "', '" . $username . "', '" . $rating . "')";
-            
+            $sql = "INSERT INTO ". TABLE_ARICLES . " (titulek, obrazek, text, id_autor, hodnoceni, recenzent, publikovat) VALUES ('" . $title . "', '" . $uploads_dir . "', '" . $text . "', '" . $user_id . "', '" . $rating . "', '', 0)";
+            echo $sql;
+
             $result = $this->pdo->exec($sql);
             return $result;
+        }
+
+        /**
+         * Vrati id na zaklade jmena uzivatele
+         */
+        public function getId(string $username):int {
+            $sql = "SELECT id_uzivatele FROM ". TABLE_USERS . " WHERE uz_jmeno=:username";
+
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindParam(':username', $username);
+
+            $stmt->execute();
+            $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            return intval($data['id_uzivatele']);
         }
 
         /**
@@ -151,7 +168,7 @@
          * Vrati vsechny uzivatele obsazene v databazi - bez admina
          */
         public function getUsers():array {
-            $sql = "SELECT * FROM " . TABLE_USERS . " WHERE role < 3";
+            $sql = "SELECT * FROM " . TABLE_USERS . " JOIN " . TABLE_ROLES . " ON " . TABLE_USERS . ".role=" . TABLE_ROLES . ".id_role" . " WHERE role < 3";
 
             return $this->pdo->query($sql)->fetchAll();
         }
@@ -169,11 +186,11 @@
         /**
          * Upravi informace o danem clanku
          */
-        public function updateDataArticle($article, $title, $picture, $text, $rating):bool {
+        public function updateDataArticle($article, $title, $picture, $text):bool {
             if(empty($picture)) {
-                $sql = "UPDATE ". TABLE_ARICLES . " SET titulek='" . $title . "', text='" . $text . "', hodnoceni='" . $rating . "' WHERE id_clanku='" . $article . "'";
+                $sql = "UPDATE ". TABLE_ARICLES . " SET titulek='" . $title . "', text='" . $text . "' WHERE id_clanku='" . $article . "'";
             } else {
-                $sql = "UPDATE ". TABLE_ARICLES . " SET titulek='" . $title . "', obrazek='" . $picture . "', text='" . $text . "', hodnoceni='" . $rating . "' WHERE id_clanku='" . $article . "'";
+                $sql = "UPDATE ". TABLE_ARICLES . " SET titulek='" . $title . "', obrazek='" . $picture . "', text='" . $text . "' WHERE id_clanku='" . $article . "'";
             }
 
             $result = $this->pdo->exec($sql);
@@ -183,8 +200,8 @@
         /**
          * Publikuje clanek
          */
-        public function publishArticle($article, $reviewer):bool {
-            $sql = "UPDATE ". TABLE_ARICLES . " SET recenzent='" . $reviewer . "', publikovat='1' WHERE id_clanku='" . $article . "'";
+        public function publishArticle($article, $reviewer, $rating):bool {
+            $sql = "UPDATE ". TABLE_ARICLES . " SET hodnoceni='" . $rating . "', recenzent='" . $reviewer . "', publikovat='1' WHERE id_clanku='" . $article . "'";
             
             $result = $this->pdo->exec($sql);
             return $result;

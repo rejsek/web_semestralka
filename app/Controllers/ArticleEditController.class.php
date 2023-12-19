@@ -38,7 +38,7 @@
         public function show(string $pageTitle):string {
             //// vsechna data sablony budou globalni
             global $tplData;
-            $articleId = $_GET['id'];   //id rozkliknuteho profilu
+            $articleId = htmlspecialchars($_GET['id']);   //id rozkliknuteho profilu
 
             $tplData = [];
             // nazev
@@ -68,16 +68,16 @@
                     $uploads_dir .= '/' . $_FILES["picture"]["name"];
                 }
 
-                $result = $this->db->updateDataArticle($articleId, $_POST['title'], $uploads_dir, $_POST['text'], $_POST['rating']);
+                $result = $this->db->updateDataArticle(htmlspecialchars($articleId), htmlspecialchars($_POST['title']), htmlspecialchars($uploads_dir), htmlspecialchars($_POST['text']));
 
             } else if(isset($_POST['action']) and $_POST['action'] == "delete") {
-                $result = $this->db->deleteArticle($articleId);
+                $result = $this->db->deleteArticle(htmlspecialchars($articleId));
             
             } else if(isset($_POST['action']) and $_POST['action'] == "publish") {
-                $result = $this->db->publishArticle($articleId, $_SESSION['login_user']);
+                $result = $this->db->publishArticle(htmlspecialchars($articleId), htmlspecialchars($_SESSION['login_user']), htmlspecialchars($_POST['rating']));
             
             } else if(isset($_POST['action']) and $_POST['action'] == "unpublish") {
-                $result = $this->db->unpublishArticle($articleId, $_SESSION['login_user']);
+                $result = $this->db->unpublishArticle(htmlspecialchars($articleId), htmlspecialchars($_SESSION['login_user']));
             }
 
             if($result) {

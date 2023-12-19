@@ -26,7 +26,8 @@
 
             if ($isLogged) {
                 $_SESSION['logged_in']  = true;
-                $_SESSION['login_user'] =  $username;
+                $_SESSION['login_user_id'] = $this->db->getId($username);
+                $_SESSION['login_user'] =  htmlspecialchars($username);
                 $_SESSION['login_role'] =  $this->db->getRole($username);
 
                 header("Location: index.php?page=uvod");
@@ -42,7 +43,7 @@
          * Pridani clanku do databaze
          */
         public function addArticle(string $title, string $text) {
-            $uploads_dir = '../web_semestralka/pictures/' . $_SESSION['login_user'];
+            $uploads_dir = '../web_semestralka/pictures/' . htmlspecialchars($_SESSION['login_user']);
             $error = $_FILES["picture"]["error"];
 
             if (!file_exists($uploads_dir)) {
@@ -57,14 +58,14 @@
 
             $uploads_dir .= '/' . $_FILES["picture"]["name"];
 
-            $this->db->addArticle($title, $uploads_dir, $text, $_SESSION['login_user']);
+            $this->db->addArticle(htmlspecialchars($title), htmlspecialchars($uploads_dir), htmlspecialchars($text), htmlspecialchars($_SESSION['login_user_id']));
         }
 
         /**
          * Prida uzivatele do databaze a nasledne ho prihlasi
          */
         public function addUser(string $username, string $email, string $password) {
-            $exists = $this->db->searchForUser($_POST["nick"]);
+            $exists = $this->db->searchForUser(htmlspecialchars($_POST["nick"]));
 
             if($exists) {
                 echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
@@ -72,12 +73,13 @@
                 Uživatelské jméno již exituje</div>";
             
             } else {
-                $result = $this->db->addUser($_POST["nick"], $_POST["email"], $_POST["passwd"], 1);
+                $result = $this->db->addUser(htmlspecialchars($_POST["nick"]), htmlspecialchars($_POST["email"]), htmlspecialchars($_POST["passwd"]), 1);
 
                 if($result) {
                     $_SESSION['logged_in']  = true;
-                    $_SESSION['login_user'] =  $username;
-                    $_SESSION['login_role'] =  $this->db->getRole($username);
+                    $_SESSION['login_user_id'] = $this->db->getId($username);
+                    $_SESSION['login_user'] =  htmlspecialchars($username);
+                    $_SESSION['login_role'] =  $this->db->getRole(htmlspecialchars($username));
 
                     header("Location: index.php?page=uvod");
                     

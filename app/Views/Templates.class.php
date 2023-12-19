@@ -42,7 +42,6 @@
                             <a class="nav-link" href="index.php?page=uvod">Domů</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Články</a>
                         </li>
 
                         <?php

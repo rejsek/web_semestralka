@@ -1,1 +1,0 @@
-pouzit soubor .htaccess
